@@ -18,4 +18,6 @@ jobs:
           network: 'ic'
           canister_name: 'actions_backend'
           deploy_frontend: 'true'
-          frontend_dir: 'src/actions_frontend/dist' 
+          frontend_dir: 'src/actions_frontend/dist'
+          backend_package: 'actions_backend'
+          frontend_package: 'actions_frontend'
