@@ -14,7 +14,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Download canister_ids.json
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: canister-ids
           path: .
@@ -36,7 +36,7 @@ jobs:
 
       - name: Upload canister_ids.json
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: canister-ids
           path: canister_ids.json
