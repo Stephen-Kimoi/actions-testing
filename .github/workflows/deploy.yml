@@ -13,6 +13,13 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       
+      - name: Download canister_ids.json
+        uses: actions/download-artifact@v3
+        with:
+          name: canister-ids
+          path: .
+        continue-on-error: true
+
       - name: Deploy to IC
         uses: Stephen-Kimoi/ic-deploy-action/action@v0.1.0-beta
         with:
@@ -26,3 +33,10 @@ jobs:
           frontend_src_dir: 'src/actions_frontend'
           min_cycles: '2'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload canister_ids.json
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: canister-ids
+          path: canister_ids.json
