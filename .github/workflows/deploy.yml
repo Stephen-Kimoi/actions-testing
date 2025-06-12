@@ -20,6 +20,11 @@ jobs:
           path: .
         continue-on-error: true
 
+      - name: Debug canister_ids.json
+        run: |
+          ls -l
+          cat canister_ids.json || echo "No canister_ids.json found"
+
       - name: Deploy to IC
         uses: Stephen-Kimoi/ic-deploy-action/action@v0.1.0-beta
         with:
@@ -40,3 +45,14 @@ jobs:
         with:
           name: canister-ids
           path: canister_ids.json
+
+      - name: Commit canister_ids.json to repo
+        if: always()
+        run: |
+          if [ -f canister_ids.json ]; then
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git config --global user.name "github-actions[bot]"
+            git add canister_ids.json
+            git commit -m "chore: persist canister_ids.json for canister ID reuse" || true
+            git push origin main
+          fi
