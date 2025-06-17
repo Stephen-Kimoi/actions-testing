@@ -24,5 +24,3 @@ jobs:
           backend_package: 'actions_backend'
           frontend_package: 'actions_frontend'
           frontend_src_dir: 'src/actions_frontend'
-          min_cycles: '2'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
